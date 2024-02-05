@@ -499,7 +499,6 @@ struct FactorizedShape
     bool is_singleton() const;
 
     class Iterator
-        : public std::iterator<std::input_iterator_tag, Parallelization, int, Parallelization const *, Parallelization>
     {
         int i = 0;
         FactorizedShape const *p;
@@ -512,7 +511,13 @@ struct FactorizedShape
         Iterator operator++(int);
         bool operator==(Iterator other) const;
         bool operator!=(Iterator other) const;
-        reference operator*() const;
+        Parallelization const &operator*() const;
+
+        using iterator_category = std::input_iterator_tag;
+        using value_type = Parallelization;
+        using difference_type = int;
+        using pointer = Parallelization const *;
+        using reference = Parallelization;
     };
 
     Iterator begin() const;

@@ -103,7 +103,7 @@ class GraphSolver
 
     struct RemainingOpModels
     {
-        class Iterator : public std::iterator<std::input_iterator_tag, OpModel const>
+        class Iterator
         {
             std::uint64_t i = 0;
             std::vector<OpModel> const* p = nullptr;
@@ -143,7 +143,14 @@ class GraphSolver
 
             bool operator==(Iterator other) const { return (p == other.p) and (i == other.i); }
             bool operator!=(Iterator other) const { return not(*this == other); }
-            reference operator*() const { return (*p)[i]; }
+            OpModel const &operator*() const { return (*p)[i]; }
+
+	    // std::iterator<std::input_iterator_tag, OpModel const>
+            using iterator_category = std::input_iterator_tag;
+            using value_type = OpModel;
+            using difference_type = std::ptrdiff_t;
+            using pointer = OpModel*;
+            using reference = OpModel&;
         };
 
         RemainingOpModels(std::vector<OpModel> const& p, const Bitset& mask) : p(&p), mask(mask) {}

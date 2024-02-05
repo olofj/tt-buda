@@ -1,6 +1,6 @@
 # Every variable in subdir must be prefixed with subdir (emulating a namespace)
 PYTHON_ENV = $(OUT)/python_env
-PYTHON_VERSION ?= python3.8
+PYTHON_VERSION ?= python3.11
 
 # Each module has a top level target as the entrypoint which must match the subdir name
 python_env: $(PYTHON_ENV)/.installed

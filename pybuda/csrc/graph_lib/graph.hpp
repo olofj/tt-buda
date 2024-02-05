@@ -18,7 +18,7 @@
 #include "graph_lib/edge.hpp"
 
 // Jumping through some hoops to allow modifiable edge attributes
-struct EdgeUniqueIdHash : public std::unary_function<tt::graphlib::EdgeUniqueId, std::size_t>
+struct EdgeUniqueIdHash
 {
     std::size_t operator()(const tt::graphlib::EdgeUniqueId &edge) const
     {

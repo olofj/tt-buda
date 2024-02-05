@@ -616,7 +616,7 @@ bool FactorizedShape::Iterator::operator==(Iterator other) const { return (p == 
 
 bool FactorizedShape::Iterator::operator!=(Iterator other) const { return !(*this == other); }
 
-FactorizedShape::Iterator::reference FactorizedShape::Iterator::operator*() const { return (*p)[i]; }
+Parallelization const &FactorizedShape::Iterator::operator*() const { return (*p)[i]; }
 
 FactorizedShape::Iterator FactorizedShape::begin() const { return Iterator(this); }
 

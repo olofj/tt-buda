@@ -28,7 +28,7 @@ enum InsructionType
 
 using InsInstructionUniqueId = std::tuple<std::string, std::string, std::uint32_t, std::uint32_t, bool>;
 
-struct InsInstructionUniqueIdHash : public std::unary_function<InsInstructionUniqueId, std::size_t>
+struct InsInstructionUniqueIdHash
 {
     std::size_t operator()(const InsInstructionUniqueId &instr) const
     {
@@ -63,7 +63,7 @@ struct FJBufferingInfo
     }
 };
 
-struct ForkJoinIdHash : public std::unary_function<ForkJoinId, std::size_t>
+struct ForkJoinIdHash
 {
     std::size_t operator()(const ForkJoinId &fj_id) const
     {
@@ -224,7 +224,7 @@ FJBufferingResult insert_fork_join_buffering(
     const tt::ordered_map<InsInstructionUniqueId, std::shared_ptr<InsertionInstruction>, InsInstructionUniqueIdHash>
         &previous_ins_instructions,
     const int fork_join_tiles_treshold,
-    std::function<int(const tt::balancer::OpModel &)> buffering_factor = [](const tt::balancer::OpModel &) { return 1; });
+    int (buffering_factor)(const tt::balancer::OpModel&) = [](const tt::balancer::OpModel &) { return 1; });
 
 void upsize_dram_input(graphlib::Graph *graph, balancer::OpModelMap &op_models, const std::uint32_t usable_l1_size);
 
